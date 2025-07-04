@@ -1,27 +1,102 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Inbox
+  <ion-toolbar color="success" >
+    <ion-title style="text-align: center;">
+      <b>IT 08-1</b>
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content [fullscreen]="true">
+  <div align="center">
+    <ion-card style="width:50%">
+      <ion-card-header>          
+        <!--
+        <ion-card-title >Card Title</ion-card-title>
+        <ion-card-subtitle>Card Sub Title</ion-card-subtitle>   
+        -->     
+      </ion-card-header>
+      <ion-card-content style="text-align: start;">
+        <div style="background-color:white">
+        <table cellpadding="0" cellspacing="0"  >
+          <tr>
+            <td style="vertical-align: middle;"><div class="avatar-chat">{{this.createUserName.substring(0,1)}}</div></td>
+            <td>&nbsp;&nbsp;&nbsp;</td>
+            <td style="vertical-align: top;" >
+              <label style="font-weight: bold;font-size:medium;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">{{this.createUserName}}</label>      
+              <br>
+              {{createdTime}}
+            </td>
+          </tr>
+        </table>
+        <!--
+        {{content}}
+        -->
+        <br>
+        <table style="width: 100%;">
+          <tr>
+            <td align="center"><img  src="http://localhost:5067/WebBoard/GetWebBoardImage/{{this.WebBoardId}}"/></td>
+          </tr>
+        </table>
+        <p>
+          &nbsp;
+        </p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div align="center">
+    <table style="width:50%;" cellpadding="0" cellspacing="0">
+      <tr>
+        <td>
+          <ion-list lines="inset">
+            <ion-item>    
+              <table  cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="vertical-align: middle;"><div class="avatar-chat">{{this.UserName.substring(0,1)}}</div></td>
+                  <td>&nbsp;&nbsp;&nbsp;</td>
+                  <td style="vertical-align: top;align-content: start;" >
+                    <label style="font-weight: bold;font-size:medium;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">{{this.UserName}}</label>      
+                    <br>
+                    <input type="text" style="width:640px;background-color:lightgray;" id="comment" name="comment" placeholder="Comment" [(ngModel)]="CommentText" (keydown.enter)="onEnterPressed($event)" > 
+                  </td>
+                </tr>
+              </table>
+            </ion-item>
+            <ion-list *ngFor="let c of this.WebBoardComments;let i = index">
+              <ion-item> 
+              <table cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="vertical-align: bottom;"><div class="avatar-chat">{{c.createUserName.substring(0,1)}}</div></td>
+                  <td>&nbsp;&nbsp;&nbsp;</td>
+                  <td style="vertical-align: top;">
+                    <label style="font-weight: bold;">{{c.createUserName}}</label>  
+                    <br>
+                    <span >{{c.commentText}}</span>
+                  </td>
+                </tr>
+              </table>
+              </ion-item>
+            </ion-list>
+            <!--
+            @for (message of getMessages(); track message) {
+              <app-message [message]="message"></app-message>
+            }
+            -->
+          </ion-list>
+        </td>
+      </tr>
+    </table>
+  </div>
+  
   <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">
-        Inbox
+      <ion-title size="large" >
+        IT 08-1
       </ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <ion-list>
-    @for (message of getMessages(); track message) {
-      <app-message [message]="message"></app-message>
-    }
-  </ion-list>
 </ion-content>
